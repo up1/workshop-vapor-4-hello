@@ -32,6 +32,11 @@ func routes(_ app: Application) throws {
         return Beers(count: count)
     }
     
+    app.post("beers") { request -> String in
+        let beers = try request.content.decode(Beers.self)
+        return "There were \(beers.count) bottles"
+    }
+    
     // Quiz 1 :: /hello/:name
     app.get("hello", ":name") { request -> String in
         guard let name =
@@ -40,6 +45,7 @@ func routes(_ app: Application) throws {
         }
         return "Hello \(name)"
     }
+
     
 
     let todoController = TodoController()
