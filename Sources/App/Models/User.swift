@@ -9,7 +9,7 @@ import Vapor
 import Fluent
 
 final class User: Model, Content {
-    static let schema: "users"
+    static let schema = "users"
     
     @ID(key: "id") var id: Int?
     @Field(key: "name") var name: String
