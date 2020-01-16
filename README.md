@@ -3,7 +3,7 @@
 * Response + JSON
 * Database :: Flunt
    * Create model
-   * Miogration
+   * Migration
    * Configuration scheme
 * Working with controller
    * Create new controller + add to route
