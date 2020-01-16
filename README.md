@@ -9,3 +9,4 @@
    * Create new controller + add to route
    * List all user
    * Get user by id
+   * Delete user by id
