@@ -1,4 +1,4 @@
-## Workshop :: Hello Vapor + Fluent
+## Workshop :: Hello Vapor + Fluent at iOS conf Singapore 2020
 * Request + JSON
 * Response + JSON
 * Database :: Flunt
@@ -8,4 +8,4 @@
 * Working with controller
    * Create new controller + add to route
    * List all user
-
+   * Get user by id
