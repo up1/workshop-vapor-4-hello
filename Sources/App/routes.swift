@@ -46,6 +46,20 @@ func routes(_ app: Application) throws {
         return "Hello \(name)"
     }
 
+    // Quiz 2
+    
+    struct UserInfo: Content {
+        let name: String
+        let age: Int
+    }
+    struct Message: Content {
+        let message: String
+    }
+    app.post("user-info") { request -> Message in
+        let userInfo = try request.content.decode(UserInfo.self)
+        let message = "Hello \(userInfo.name), you are \(userInfo.age)"
+        return Message(message: message)
+    }
     
 
     let todoController = TodoController()
