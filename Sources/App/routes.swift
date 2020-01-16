@@ -17,12 +17,19 @@ func routes(_ app: Application) throws {
     
     // Working with path variable from URL
     // /beers/:count
-    app.get("beers", ":count") { request -> String in
+    
+    struct Beers: Content {
+        let type: String = "Double IPA"
+        let count: Int
+        
+    }
+    
+    app.get("beers", ":count") { request -> Beers in
         guard let count =
             request.parameters.get("count", as: Int.self) else {
                 throw Abort(.badRequest)
         }
-        return "There were \(count) beers on the wall"
+        return Beers(count: count)
     }
     
     // Quiz 1 :: /hello/:name
