@@ -10,3 +10,4 @@
    * List all user
    * Get user by id
    * Delete user by id
+   * Update user by id
