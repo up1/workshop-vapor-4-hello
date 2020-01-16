@@ -9,10 +9,12 @@ import Vapor
 import Fluent
 
 struct UserController: RouteCollection {
+    
     func boot(routes: RoutesBuilder) throws {
         routes.post("api", "user", use: createHandler)
         routes.get("api", "user", use: getAllHandler)
         routes.get("api", "user", ":id", use: getById)
+        routes.delete("api", "user", ":id", use: deleteById)
     }
     
     func createHandler(request: Request) throws ->EventLoopFuture<User> {
@@ -30,5 +32,16 @@ struct UserController: RouteCollection {
                 throw Abort(.badRequest)
         }
         return User.find(id, on: request.db).unwrap(or: Abort(.notFound))
+    }
+    
+    func deleteById(request: Request) throws ->EventLoopFuture<HTTPStatus> {
+        guard let id =
+            request.parameters.get("id", as: Int.self) else {
+                throw Abort(.badRequest)
+        }
+        return User.find(id, on: request.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap{ $0.delete(on: request.db) }
+            .transform(to: .ok)
     }
 }
